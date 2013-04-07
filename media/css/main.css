@@ -41,6 +41,7 @@ select{
 #output{
     border-left: solid 1px #999;
     border-bottom: solid 1px #999;
+    border-right: solid 1px #999;
     position: absolute;
     top: 50px;
     bottom: 10px;
