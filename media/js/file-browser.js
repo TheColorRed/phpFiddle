@@ -28,6 +28,7 @@ $(document).on("click", ".folder a", function(){
 });
 
 $(document).on("click", ".file a", function(){
+    save();
     var path = $(this).closest("div").attr("data-name");
     curFile = path;
     openFile(path);

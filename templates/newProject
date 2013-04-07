@@ -8,6 +8,7 @@ $project = "$projectname";
     </head>
     <body>
         <h1>My <?php echo $project; ?> Project</h1>
+        <h2>Layout</h2>
         <p>
             This is the default template. If your new here, please read.
         </p>
@@ -24,5 +25,14 @@ $project = "$projectname";
         <p>
             Well that is all there is, have fun editing!
         </p>
+        <h2>Saving Files</h2>
+        <p>
+            Files are saved automatically and manually, here is how files get saved:
+        </p>
+        <ul>
+            <li>Once you click "Run"</li>
+            <li>Once you click "Save"</li>
+            <li>Once you open a new file</li>
+        </ul>
     </body>
 </html>

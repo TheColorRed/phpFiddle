@@ -118,6 +118,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
     height: 100%;
     outline: none; /* Prevent dragging from highlighting the element */
     position: relative;
+    cursor: default;
 }
 .CodeMirror-sizer {
     position: relative;
@@ -130,20 +131,24 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
     position: absolute;
     z-index: 6;
     display: none;
+    cursor: default;
 }
 .CodeMirror-vscrollbar {
     right: 0; top: 0;
     overflow-x: hidden;
     overflow-y: scroll;
+    cursor: default;
 }
 .CodeMirror-hscrollbar {
     bottom: 0; left: 0;
     overflow-y: hidden;
     overflow-x: scroll;
+    cursor: default;
 }
 .CodeMirror-scrollbar-filler {
     right: 0; bottom: 0;
     z-index: 6;
+    cursor: default;
 }
 
 .CodeMirror-gutters {
@@ -201,6 +206,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
     position: relative;
     z-index: 2;
     overflow: auto;
+    cursor: default;
 }
 
 .CodeMirror-widget {
@@ -209,6 +215,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 
 .CodeMirror-wrap .CodeMirror-scroll {
     overflow-x: hidden;
+    cursor: default;
 }
 
 .CodeMirror-measure {
@@ -227,6 +234,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 }
 .CodeMirror-focused div.CodeMirror-cursor {
     visibility: visible;
+    cursor: default;
 }
 
 .CodeMirror-selected { background: #d9d9d9; }
