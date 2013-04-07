@@ -69,6 +69,7 @@ $fiddle->create($p);
         </div>
         <script>
             var project = '<?php echo $project; ?>';
+            var curFile = '';
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                 autofocus: true,
                 lineNumbers: true,
@@ -155,36 +156,6 @@ $fiddle->create($p);
                 pos = {line: lines, ch: ch};
                 editor.setCursor(pos);
                 editor.focus();
-            });
-            function run(){
-                var code = editor.getValue();
-                $.ajax({
-                    url: "./run.php",
-                    type: "POST",
-                    data: {
-                        code: code
-                    },
-                    success: function(data){
-                        var ifrm = document.getElementById('results');
-                        ifrm = (ifrm.contentWindow)
-                                ? ifrm.contentWindow
-                                : (ifrm.contentDocument.document)
-                                ? ifrm.contentDocument.document
-                                : ifrm.contentDocument;
-                        ifrm.document.open();
-                        ifrm.document.write(data);
-                        ifrm.document.close();
-                    }
-                });
-            }
-            $("#run").click(function(){
-                run();
-                return false;
-            });
-            $(document).keydown(function(e){
-                if(e.keyCode === 13 && e.ctrlKey){
-                    run();
-                }
             });
         </script>
         <script src="./media/js/file-browser.js"></script>

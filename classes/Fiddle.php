@@ -14,6 +14,8 @@ class Fiddle{
         if(!is_dir($directory)){
             mkdir($directory);
             touch($directory . "/index.php");
+            $html = file_get_contents(__DIR__ . "/../templates/newProject");
+            file_put_contents($directory . "/index.php", $html);
         }
     }
 
@@ -32,6 +34,15 @@ class Fiddle{
         }
         return false;
     }
+
+    public function getpath($project, $path = "/index.php"){
+        if(empty($this->root)){
+            $this->setproject($project);
+        }
+        $file = $this->root . str_replace("//", "/", $path);
+        return $file;
+    }
+
     public function getFile($project, $path = "/index.php"){
         if(empty($this->root)){
             $this->setproject($project);
@@ -39,6 +50,7 @@ class Fiddle{
         $file = $this->root . str_replace("//", "/", $path);
         return file_get_contents($file);
     }
+
     public function getContents($project, $path = "/"){
         if(empty($this->root)){
             $this->setproject($project);

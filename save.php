@@ -4,11 +4,11 @@
 
 require_once __DIR__ . "/classes/Fiddle.php";
 
-if(!isset($_GET["p"]))
+if(!isset($_POST["p"]))
     exit;
 
-$project = $_GET["p"];
-$path    = $_GET["file"];
+$project = $_POST["p"];
+$path    = $_POST["file"];
 
 $fiddle = new Fiddle();
 if(!$fiddle->isProject($project)){
@@ -16,10 +16,8 @@ if(!$fiddle->isProject($project)){
     exit;
 }
 $runPath = $fiddle->getPath($project, $path);
-$opt     = [];
 
-exec("php -f $runPath", $opt);
-echo implode(" ", $opt);
+file_put_contents($runPath, $_POST["content"]);
 
 //echo json_encode([$path]);
 //echo $fiddle->getFile($project, $path);
