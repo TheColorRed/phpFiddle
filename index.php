@@ -30,6 +30,7 @@ $fiddle->create($p);
         <div id="top-nav">
             <div id="links">
                 <a href="" id="run" title="Ctrl + Enter">Run</a>
+                <a href="" id="save" title="Alt + S">Save</a>
             </div>
         </div>
         <div id="left-nav">
@@ -149,18 +150,22 @@ $fiddle->create($p);
             var pos = $("#code").position();
             var codeSize = width + pos.left + 8;
             $("#output").css({left: codeSize + "px"});
-            $("#code").click(function(){
+            /*$("#code").click(function(e){
+                e.preventDefault();
                 var pos = editor.getCursor();
                 var lines = editor.lineCount();
                 var ch = editor.getLine(lines - 1);
                 pos = {line: lines, ch: ch};
                 editor.setCursor(pos);
                 editor.focus();
-            });
+            });*/
         </script>
         <script src="./media/js/file-browser.js"></script>
+        <script src="./media/js/header.js"></script>
         <script>
-            openFile("/startup.php", function(){run();});
+            openFile("/startup.php", function(){
+                run();
+            });
         </script>
     </body>
 </html>
