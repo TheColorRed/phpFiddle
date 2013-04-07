@@ -69,7 +69,7 @@ $fiddle->create($p);
         </div>
         <script>
             var project = '<?php echo $project; ?>';
-            var curFile = '';
+            var curFile = '/startup.php';
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                 autofocus: true,
                 lineNumbers: true,
@@ -159,5 +159,8 @@ $fiddle->create($p);
             });
         </script>
         <script src="./media/js/file-browser.js"></script>
+        <script>
+            openFile("/startup.php", function(){run();});
+        </script>
     </body>
 </html>

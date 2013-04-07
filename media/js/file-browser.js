@@ -29,7 +29,12 @@ $(document).on("click", ".folder a", function(){
 
 $(document).on("click", ".file a", function(){
     var path = $(this).closest("div").attr("data-name");
-    var self = $(this).closest("div");
+    curFile = path;
+    openFile(path);
+    return false;
+});
+
+function openFile(path, complete){
     $.ajax({
         type: "get",
         url: "./get/fileContents.php?p=" + project + "&file=" + escape(path),
@@ -37,11 +42,12 @@ $(document).on("click", ".file a", function(){
             editor.setValue(code);
             var pos = path.lastIndexOf(".");
             setMode(path.substr(pos + 1));
-            curFile = path;
+            if(typeof complete === "function"){
+                complete();
+            }
         }
     });
-    return false;
-});
+}
 
 $("#run").click(function(){
     saveRun();
@@ -54,14 +60,16 @@ $(document).keydown(function(e){
 });
 
 function saveRun(){
-    save(function(){run();});
+    save(function(){
+        run();
+    });
 }
 
 function save(complete){
     $.ajax({
         url: "./save.php",
         type: "post",
-        data:{
+        data: {
             p: project,
             file: curFile,
             content: editor.getValue()

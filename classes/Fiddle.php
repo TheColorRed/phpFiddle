@@ -2,7 +2,7 @@
 
 class Fiddle{
 
-    protected $project = "afrid1";
+    protected $project = "demo";
     protected $root    = "";
 
     public function create($project = ""){
@@ -14,8 +14,10 @@ class Fiddle{
         if(!is_dir($directory)){
             mkdir($directory);
             touch($directory . "/index.php");
+            touch($directory . "/startup.php");
             $html = file_get_contents(__DIR__ . "/../templates/newProject");
-            file_put_contents($directory . "/index.php", $html);
+            $html = str_replace('$projectname', $this->project, $html);
+            file_put_contents($directory . "/startup.php", $html);
         }
     }
 
