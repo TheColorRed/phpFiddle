@@ -6,6 +6,7 @@ $("#run").click(function(){
 
 $("#save").click(function(){
     save();
+    return false;
 });
 
 $(document).keydown(function(e){
