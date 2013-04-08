@@ -30,6 +30,7 @@ $(document).on("click", ".folder a", function(){
 $(document).on("click", ".file a", function(){
     save();
     var path = $(this).closest("div").attr("data-name");
+    window.history.pushState("fiddle", "", "/phpFiddle/" + project + "/" + window.btoa(path) + "/");
     curFile = path;
     openFile(path);
     return false;
@@ -38,7 +39,7 @@ $(document).on("click", ".file a", function(){
 function openFile(path, complete){
     $.ajax({
         type: "get",
-        url: "./get/fileContents.php?p=" + project + "&file=" + escape(path),
+        url: "/phpFiddle/get/fileContents.php?p=" + project + "&file=" + escape(path),
         success: function(code){
             editor.setValue(code);
             var pos = path.lastIndexOf(".");

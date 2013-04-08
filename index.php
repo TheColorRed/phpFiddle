@@ -10,21 +10,21 @@ $fiddle->create($p);
 <html>
     <head>
         <title>PHP Fiddle</title>
-        <link rel="stylesheet" href="./media/css/main.css" />
-        <link rel="stylesheet" href="./media/css/codemirror.css">
+        <link rel="stylesheet" href="/phpFiddle/media/css/main.css" />
+        <link rel="stylesheet" href="/phpFiddle/media/css/codemirror.css">
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-        <script src="./media/js/codemirror.js"></script>
-        <script src="./media/js/support/matchbrackets.js"></script>
-        <script src="./media/js/support/htmlmixed.js"></script>
-        <script src="./media/js/support/xml.js"></script>
-        <script src="./media/js/support/javascript.js"></script>
-        <script src="./media/js/support/css.js"></script>
-        <script src="./media/js/support/clike.js"></script>
-        <script src="./media/js/support/php.js"></script>
-        <script src="./media/js/support/active-line.js"></script>
-        <script src="./media/js/support/autoformat.js"></script>
+        <script src="/phpFiddle/media/js/codemirror.js"></script>
+        <script src="/phpFiddle/media/js/support/matchbrackets.js"></script>
+        <script src="/phpFiddle/media/js/support/htmlmixed.js"></script>
+        <script src="/phpFiddle/media/js/support/xml.js"></script>
+        <script src="/phpFiddle/media/js/support/javascript.js"></script>
+        <script src="/phpFiddle/media/js/support/css.js"></script>
+        <script src="/phpFiddle/media/js/support/clike.js"></script>
+        <script src="/phpFiddle/media/js/support/php.js"></script>
+        <script src="/phpFiddle/media/js/support/active-line.js"></script>
+        <script src="/phpFiddle/media/js/support/autoformat.js"></script>
     </head>
     <body>
         <div id="top-nav">
@@ -36,8 +36,8 @@ $fiddle->create($p);
         <div id="left-nav">
             <div class="nav-section">
                 <select id="run-type">
-                    <option>Run as Http</option>
                     <option>Run as CLI</option>
+                    <option>Run as Http</option>
                 </select>
             </div>
             <div class="nav-section">
@@ -70,7 +70,13 @@ $fiddle->create($p);
         </div>
         <script>
             var project = '<?php echo $project; ?>';
-            var curFile = '/startup.php';
+            <?php
+            if(isset($_GET["file"])){
+                echo "var curFile = '".  base64_decode($_GET["file"])."';";
+            }else{
+                echo "var curFile = '/startup.php';";
+            }
+            ?>
             var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
                 autofocus: true,
                 lineNumbers: true,
@@ -151,19 +157,26 @@ $fiddle->create($p);
             var codeSize = width + pos.left + 8;
             $("#output").css({left: codeSize + "px"});
             /*$("#code").click(function(e){
-                e.preventDefault();
-                var pos = editor.getCursor();
-                var lines = editor.lineCount();
-                var ch = editor.getLine(lines - 1);
-                pos = {line: lines, ch: ch};
-                editor.setCursor(pos);
-                editor.focus();
-            });*/
+             e.preventDefault();
+             var pos = editor.getCursor();
+             var lines = editor.lineCount();
+             var ch = editor.getLine(lines - 1);
+             pos = {line: lines, ch: ch};
+             editor.setCursor(pos);
+             editor.focus();
+             });*/
         </script>
-        <script src="./media/js/file-browser.js"></script>
-        <script src="./media/js/header.js"></script>
+        <script src="/phpFiddle/media/js/file-browser.js"></script>
+        <script src="/phpFiddle/media/js/header.js"></script>
         <script>
-            openFile("/startup.php", function(){
+            <?php
+            if(isset($_GET["file"])){
+                echo "var file = '".  base64_decode($_GET["file"])."';";
+            }else{
+                echo "var file = '/startup.php';";
+            }
+            ?>
+            openFile(file, function(){
                 run();
             });
         </script>
