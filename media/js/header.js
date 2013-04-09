@@ -1,3 +1,4 @@
+alert("hello");
 $("#run").click(function(){
     saveRun();
     return false;
