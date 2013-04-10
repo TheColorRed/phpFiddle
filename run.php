@@ -17,8 +17,9 @@ if(!$fiddle->isProject($project)){
 }
 $runPath = $fiddle->getPath($project, $path);
 $opt     = [];
+$dir     = pathinfo($runPath)["dirname"];
+exec("cd $dir && /php/5.4.8/php -f " . __DIR__ . "/run/run.php $runPath", $opt);
 
-exec("php -f $runPath", $opt);
 echo implode(" ", $opt);
 
 //echo json_encode([$path]);
